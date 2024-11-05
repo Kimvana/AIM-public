@@ -10,6 +10,7 @@ import shutil
 from .sourcecode import FileHandler as AIM_FH
 from .sourcecode import TimeKeeping as AIM_TK
 
+
 def run(callcommand):
     TIMER = AIM_TK.Timer()
 
@@ -17,7 +18,7 @@ def run(callcommand):
     # the
     # log and output dirs. Determines the start time and OS used for this run.
     # FILES = AIM_FH.FileLocations(sys.path[0], "V9-11", "9.11")
-    FILES = AIM_FH.FileLocations(__file__, "V1-0-2", "1.0.2")
+    FILES = AIM_FH.FileLocations(__file__, "V1-0-3", "1.0.3")
 
     # A lot of parameter processing. Finds the requested and default
     # parameters,
@@ -28,7 +29,6 @@ def run(callcommand):
     print(sys.argv)
     print(type(sys.argv))
     RunPar = FILES.GenerateRunParameters(callcommand)
-
 
     # Prints the first logo to terminal, prints version, starts profiler. The
     # returned WS contains the topology/trajectory as read from the file, with

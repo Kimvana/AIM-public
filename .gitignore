@@ -1,3 +1,8 @@
 **.pyc
 **offsets.npz
 **.DS_Store
+/env_AIM_NI
+*.exp
+*.lib
+*.obj
+*xtc_offsets.lock

@@ -411,14 +411,14 @@ def CalcTCC_nb(AmGroupi, AmGroupj, WS_positions, AllAmGroups, halfbox, boxdims,
     qi = tyi * qPro + (1-tyi) * qGen
     dqi = tyi * dqPro + (1-tyi) * dqGen
     qj = tyj * qPro + (1-tyj) * qGen
-    dqj = tyj * dqPro + (1-tyi) * dqGen
+    dqj = tyj * dqPro + (1-tyj) * dqGen
 
     for a in range(6):
         va = TCC_v[AmGroupi, a*3:(a+1)*3]
         for b in range(6):
             d = AIM_MF.PBC_diff(
-                WS_positions[AllAmGroups[AmGroupi, 6+a], :],
                 WS_positions[AllAmGroups[AmGroupj, 6+b], :],
+                WS_positions[AllAmGroups[AmGroupi, 6+a], :],
                 halfbox, boxdims)
             r2 = AIM_MF.dotprod(d, d)
             if r2 < 0.01:
@@ -436,7 +436,7 @@ def CalcTCC_nb(AmGroupi, AmGroupj, WS_positions, AllAmGroups, halfbox, boxdims,
                   * AIM_MF.dotprod(vb, d)
                   * AIM_MF.dotprod(va, d))
             J -= ir3 * (dqi[a] * qj[b] * AIM_MF.dotprod(vb, d)
-                        + qi[a] * dqj[b] * AIM_MF.dotprod(va, d)
+                        - qi[a] * dqj[b] * AIM_MF.dotprod(va, d)
                         - AIM_MF.dotprod(va, vb) * qi[a] * qj[b])
             J += ir * dqi[a] * dqj[b]
     J *= TCC_4PiEps
