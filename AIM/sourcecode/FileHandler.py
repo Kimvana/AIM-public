@@ -175,20 +175,6 @@ class FileLocations:
             "\n\nRunning version " + self.script_version_print
         ])
 
-        
-        # self.backlog.append([
-        #     1,
-        #     "\n" + "*" * 103 +
-        #     "\nThis is an early release of AIM, available while the "
-        #     "corresponding paper is being submitted. The goal\nof this early "
-        #     "release is to aid the scientific community. If you wish to use "
-        #     "this program for your\nscientific work, we'd like to ask you to "
-        #     "be patient with publishing: as soon as the paper is accepted,\n"
-        #     "the first true version will be released. That version will "
-        #     "include a reference and a license.\n" +
-        #     "*" * 103
-        # ])
-
         # if a parameter file was supplied, all parameter settings are
         # extracted from it.
 
@@ -1633,7 +1619,7 @@ class RunParameters:
         for key in setdict:
             choice = getattr(self, key)
 
-            if type(choice) == list:
+            if isinstance(choice, list):
                 if any(
                     choicepart not in setdict[key] for choicepart in choice
                 ):
