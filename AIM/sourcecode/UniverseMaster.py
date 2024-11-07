@@ -211,7 +211,7 @@ class Universe:
 
             # Similarly, some residue names MUST be the end of a chain, just
             # like some atom names MUST indicate the beginning of a new chain
-            if(
+            if (
                 resname in ["ETA", "GL2"]
                 or
                 any(
@@ -407,7 +407,8 @@ class Universe:
             self.InitCouplingArrays(RunPar)
         else:
             if "Dip" in RunPar.output_type:
-                self.TDCgen_r = np.empty((self.res_desired_len, 3))
+                self.TDCgen_r = np.empty(
+                    (self.res_desired_len, 3), dtype="float32")
 
         self.characteristics = Characterizer(self)
         self.ix.LocalFinder(RunPar, self)
@@ -843,13 +844,13 @@ class Universe:
         """
         if (RunPar.coupling_choice == "TCC"
                 or RunPar.NN_coupling_choice == "TCC"):
-            self.TCC_v = np.empty((self.res_desired_len, 18))
+            self.TCC_v = np.empty((self.res_desired_len, 18), dtype="float32")
             if RunPar.use_c_lib:
                 self.TCC_v_c = AIM_DC.ctype2d(self.TCC_v, 'float32')
         if (RunPar.coupling_choice == "TDCKrimm"
                 or RunPar.NN_coupling_choice == "TDCKrimm"):
-            self.TDCKr_r = np.empty((self.res_desired_len, 3))
-            self.TDCKr_m = np.empty((self.res_desired_len, 3))
+            self.TDCKr_r = np.empty((self.res_desired_len, 3), dtype="float32")
+            self.TDCKr_m = np.empty((self.res_desired_len, 3), dtype="float32")
             if RunPar.use_c_lib:
                 self.TDCKr_r_c = AIM_DC.ctype2d(self.TDCKr_r, 'float32')
                 self.TDCKr_m_c = AIM_DC.ctype2d(self.TDCKr_m, 'float32')
@@ -864,8 +865,8 @@ class Universe:
         if (RunPar.coupling_choice == "TDCTasumi"
                 or RunPar.NN_coupling_choice == "TDCTasumi"
                 or RunPar.coupling_choice == "TCC"):
-            self.TDCTa_r = np.empty((self.res_desired_len, 3))
-            self.TDCTa_m = np.empty((self.res_desired_len, 3))
+            self.TDCTa_r = np.empty((self.res_desired_len, 3), dtype="float32")
+            self.TDCTa_m = np.empty((self.res_desired_len, 3), dtype="float32")
             if RunPar.use_c_lib:
                 self.TDCTa_r_c = AIM_DC.ctype2d(self.TDCTa_r, 'float32')
                 self.TDCTa_m_c = AIM_DC.ctype2d(self.TDCTa_m, 'float32')
@@ -873,7 +874,7 @@ class Universe:
         # for the generic TD coupling between two arbitrary groups
         # There is no need to initialize a TDCgen_m, as it would just equal
         # WS.Dipoles. That one is used instead.
-        self.TDCgen_r = np.empty((self.res_desired_len, 3))
+        self.TDCgen_r = np.empty((self.res_desired_len, 3), dtype="float32")
 
     def RunCalc(self, TIMER, FILES, RunPar):
         """
@@ -1316,7 +1317,8 @@ class Universe:
 
         totaloftype = AIM_PC.finprint_composition(FILES, RunPar, self)
 
-        AIM_PC.vprintl(1, ["\n", "\nNotes from maps:"], FILES.logfilename, RunPar)
+        AIM_PC.vprintl(
+            1, ["\n", "\nNotes from maps:"], FILES.logfilename, RunPar)
 
         for exmap in RunPar.ExtraMaps.values():
             exmap.functions["post_calc"](FILES, RunPar, self, exmap)

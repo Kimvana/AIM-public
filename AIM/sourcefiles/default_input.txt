@@ -11,10 +11,10 @@ referencefile                    references.dat
 resnamesfile                     resnames.dat
 atnamesfile                      atnames_Gromacs.dat
 libfile                          DLLs/AIMV8-5/x64/Debug/AIMV8-5.dll
-libfile_Win32                    AIMV1-0-0_32.dll
-libfile_Win64                    AIMV1-0-0_64.dll
-libfile_MacOS                    AIMV1-0-0.dylib
-libfile_Linux                    AIMV1-0-0.so
+libfile_Win32                    AIMV1-0-3_32.dll
+libfile_Win64                    AIMV1-0-3_64.dll
+libfile_MacOS                    AIMV1-0-3.dylib
+libfile_Linux                    AIMV1-0-3.so
 use_c_lib                        False
 extramapdir                      ../extra_maps
 
