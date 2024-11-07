@@ -26,8 +26,6 @@ def run(callcommand):
     # all
     # requested files are present. Writes choices to log file and creates the
     # parameter output file.
-    print(sys.argv)
-    print(type(sys.argv))
     RunPar = FILES.GenerateRunParameters(callcommand)
 
     # Prints the first logo to terminal, prints version, starts profiler. The
