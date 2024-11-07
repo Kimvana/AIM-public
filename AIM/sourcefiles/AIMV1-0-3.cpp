@@ -345,6 +345,13 @@ extern "C" {
 		float qi, qj[6], dqi, dqj[6];
 		int tyi, tyj;
 
+        /*
+        The constants used here (q, dq, etc) are as presented in the eratum
+        to the 2006 paper (10.1063/1.2218516).
+        The equation is also the same, if one replaces the 'n' in equation A6
+        in the paper with 'j' here, and the 'm' in the paper with 'i' here.
+        */
+
 		tyi = PrePro[AmGroupi];
 		tyj = PrePro[AmGroupj];
 
