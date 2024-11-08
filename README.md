@@ -14,6 +14,9 @@ AIM is capable of extracting the vibrational Hamiltonian from a molecular dynami
 
 ## Quick-start guide
 
+### What's the difference between versions? Should I update my older version?
+If you scroll further down this page, you find an overview of changes with each version. We always recommend updating!
+
 ### Where can I find the manual?
 The manual can be found in the support_files folder above. It contains all information about the program, much more than this page! Please note that the manual is written with the main branch in mind, so the beta branch version might function slightly differently. Read on below for instructions on how this version differs.
 
@@ -48,6 +51,9 @@ Because of the installation, calling the program changes slightly. While the mai
 This is the main downside of the installable version. The files you'd like to edit are stored within your python installation. If you use a venv, you have access to them, if not, it depends on your user rights on your system. I strongly advise you DO NOT CHANGE those files - there is now dedicated functionality in AIM to deal with this:
 Running ```AIM setup targetdirectory``` will create a copy of the installed (this is why you shouldn't change those) folders in the chosen targetdirectory. Replace the text targetdirectory with the intended location. Then, change the files in these new copies (or add files) to your liking.
 Following the instructions of the manual, add the path to your edited version of the sourcefiles and/or extra_maps directories to your input file before running your calculation.
+### Is the program still being maintained?
+Yes. If you find bugs or other issues, we aim (see what I did there?) to resolve those. We, however, are not currently working on adding new features.
+
 
 ## Contact information
 
@@ -75,4 +81,38 @@ Next to the python installation, AIM also makes use of the following modules, wh
 We'd like to encourage the growth of an engaged community. This list will feature examples of ways to extend the capabilities of AIM. Please note that the linked projects are not an official part of AIM, and we take no responsibility in maintaining, updating, or managing them.
 * [This](https://github.com/lacourjansenlab/Parallel_AIM_script) is a simple way of running AIM in parallel. We hope to add parallel capabilities to AIM soon, but this should help in the meantime. 
 
+
+
+## Changes between versions (most recent first)
+
+### v1.0.3 (november '24)
+**Main change:** bug fixes to TCC coupling model
+- Both numba and C versions of the TCC calculations (selected between by (not) having a functional c library) contained small bugs, which have been resolved and verified.
+- Added an 'only run on windows' condition to the declspec block at the top of the C code, so that it doesn't have to be manually (un)commented.
+- Removed the occasional warning about overflows or underflows. These were of no influence to the actual results from the program, but still nice to remove the warnings.
+
+
+### v1.0.2 (june '23)
+**Main changes:** clearer report on missing atoms, speedup multicore applications
+- Program threw odd (sometimes unpredictable) errors when using the wrong atnames file. Now, when the atnames are applied, the program checks whether all have been found, and if not, reports which. This should help inform users about what's going wrong.
+- When using the parallel script provided by github user GHlacour (linked in README.md), some threads were significantly slower than others. This has now been fixed, resulting in speedups of up to a factor 4.
+
+
+### v1.0.1 (may '22)
+Updated the pre release to become the first official version.
+
+**Main changes:** added license, improved documentation/feedback to user.
+
+Additions:
+- A license. Please don't forget to cite the paper when using this program!
+- A reference to the paper is now printed in the 'relevant references' section.
+- The option not to calculate the coupling between amide groups. Other couplings have to be managed through .cmap files.
+
+Changes:
+- The header at the beginning of the program now reflects that the paper has been released.
+- The FAQ in the manual has been updated similar to the program header.
+
+
+### v1.0.0 prereleases (and older)
+Please see the update history file in the 'support_files' directory.
 
